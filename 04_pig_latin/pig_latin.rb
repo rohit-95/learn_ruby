@@ -1,8 +1,13 @@
 def trans(text)
+  capital = false
+  caps = "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z"
+  caps = caps.split()
+  if (caps.include?(text.chr))
+    capital = true
+  end
   vowels = ['a', 'e', 'i', 'o', 'u']
   if(vowels.include?(text[0]))
     text = text + "ay"
-    text
   elsif ((['q'].include?(text[0])) && (['u'].include?(text[1])))
     l = text.length()-2
     t = text.byteslice(2,l) + text.byteslice(0,2)
@@ -12,6 +17,10 @@ def trans(text)
     t = text.byteslice(1,l) + text.byteslice(0)
     trans(t)
   end
+  if(capital)
+    text.capitalize!
+  end
+  text
 end
 
 def translate(text)
